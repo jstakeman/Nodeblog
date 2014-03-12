@@ -8,8 +8,13 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-
 var app = express();
+
+
+// Database
+var mongo = require('mongoskin');
+var db = mongo.db("mongodb://<dbuser>:<dbpassword>@ds033559.mongolab.com:33559/nodeblogdb", {native_parser:true});
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
