@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 New Post
+  p Write Here
+  <br/>
+  form#formCreatePost(name="createpost",method="post",action="/createpost")
+        input#inputPostTitle(type="text", placeholder="sometitle", name="posttitle")
+        <br/>
+        textarea#inputPostContent(type="text", placeholder="brilliance", name="postcontent")
+        button#btnSubmit(type="submit") submit
