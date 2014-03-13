@@ -9,12 +9,12 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var app = express();
-var env = require('env.json');
+var env = require('./env.json');
 
 
 // Database
 var mongo = require('mongoskin');
-var db = mongo.db(dburi, {native_parser:true});
+var db = mongo.db( env.dburi, {native_parser:true});
 
 
 // all environments
@@ -34,7 +34,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', routes.index(db));
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
