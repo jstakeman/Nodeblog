@@ -1,5 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Coding in Crayon
+  ul
+    each post, i in postlist
+      li 
+        h2
+        a(href="/post/#{post._id.toString()}")= post.posttitle
+        p!= post.postcontent

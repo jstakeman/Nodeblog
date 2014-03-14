@@ -29,3 +29,14 @@ exports.create = function(db){
 		});
 	}
 }
+
+exports.show = function(db){
+	return function(req, res) {
+        db.collection('posts').findOne({_id:require('mongoskin').ObjectID(req.params._id)}, function (err, result) {
+		    if (err) throw err;
+		    res.render('show', {post: result});
+	    });
+    } 
+}
+
+

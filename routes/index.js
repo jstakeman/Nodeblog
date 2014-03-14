@@ -5,8 +5,9 @@
 
 exports.index = function(db) {
 	return function(req, res){
-	db.collection('posts').count(function (err, count) {
-		res.render('index', {title: count});
+	db.collection('posts').find().toArray(function (err, result) {
+		if (err) throw err;
+		res.render('index', {postlist: result});
 	});
       
 };
