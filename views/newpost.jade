@@ -7,5 +7,6 @@ block content
   form#formCreatePost(name="createpost",method="post",action="/createpost")
         input#inputPostTitle(type="text", placeholder="sometitle", name="posttitle")
         <br/>
+        input#inputPostSlug(type="text", placeholder="Pretty URL Goes Here", name="slug")
         textarea#inputPostContent(type="text", placeholder="brilliance", name="postcontent")
         button#btnSubmit(type="submit") submit
