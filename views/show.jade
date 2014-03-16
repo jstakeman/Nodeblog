@@ -4,4 +4,10 @@ block content
   h1 Coding in Crayon
 
   h2= post.posttitle
+  br
+  form(method="POST", action="/deletepost/#{post._id}")
+    input(type="hidden" name="_method" value="DELETE")
+    button(type="submit") Delete
+  a(href="/post/edit/#{post._id}") Edit
+  br
   p!= post.postcontent

@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 New Post
+  p Write Here
+  <br/>
+  form#formEditPost(name="editpost",method="post",action="/post/update/#{post._id}")
+        input#inputPostTitle(type="text", value="#{post.posttitle}", name="posttitle")
+        <br/>
+        input#inputPostSlug(type="text", value="#{post.slug}", name="slug")
+        textarea#inputPostContent(type="text", name="postcontent")
+          = post.postcontent
+        input(type="hidden", value="#{post._id}", name="_id")
+        input(type="hidden", name="_method", value="PUT")
+        button#btnSubmit(type="submit") submit

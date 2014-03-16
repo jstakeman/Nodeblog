@@ -14,6 +14,7 @@ var env = require('./env.json');
 
 // Database
 var mongo = require('mongoskin');
+var ObjectId = require('mongoskin').ObjectID;
 var db = mongo.db( env.dburi, {native_parser:true});
 
 
@@ -25,6 +26,7 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -37,7 +39,10 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index(db));
 app.get('/newpost', post.new);
 app.post('/createpost', post.create(db));
+app.del('/deletepost/:_id', post.delete(db));
 app.get('/post/:slug', post.show(db));
+app.get('/post/edit/:_id', post.edit(db));
+app.put('/post/update/:_id', post.update(db));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
