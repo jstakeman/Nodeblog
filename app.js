@@ -15,7 +15,7 @@ var app = express();
 if ('production' == process.env.NODE_ENV){
   var env = { 'username': process.env.USERNAME ,
               'password': process.env.PASSWORD ,
-              'dburi'   : proncess.env.DBURI
+              'dburi'   : process.env.DBURI
           }
 
 }
