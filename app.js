@@ -10,13 +10,24 @@ var signin = require('./routes/login.js');
 var http = require('http');
 var path = require('path');
 var app = express();
-var env = require('./env.json');
 
+if ('development' == app.get('env')){
+var env = require('./env.json');
+}
+
+if ('production' == app.get('env')){
+  var env = { 'username': process.env.USERNAME ,
+              'password': process.env.PASSWORD ,
+              'dburi'   : proncess.env.DBURI
+          }
+
+}
 
 // Database
 var mongo = require('mongoskin');
 var ObjectId = require('mongoskin').ObjectID;
 var db = mongo.db( env.dburi, {native_parser:true});
+
 
 
 // all environments
@@ -38,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+
 
 function restrict(req, res, next) {
   if (req.session.user) {
