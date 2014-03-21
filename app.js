@@ -11,16 +11,16 @@ var http = require('http');
 var path = require('path');
 var app = express();
 
-if ('development' == app.get('env')){
-var env = require('./env.json');
-}
 
-if ('production' == app.get('env')){
+if ('production' == process.env.NODE_ENV){
   var env = { 'username': process.env.USERNAME ,
               'password': process.env.PASSWORD ,
               'dburi'   : proncess.env.DBURI
           }
 
+}
+else {
+	var env = require('./env.json');
 }
 
 // Database
@@ -70,6 +70,8 @@ app.put('/post/update/:_id', restrict, post.update(db));
 app.get('/login', signin.login);
 app.post('/login', signin.check(env));
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+var port = Number(process.env.PORT || 3000);
+
+http.createServer(app).listen(port), function(){
+  console.log('Express server listening on port ' + port);
+};
