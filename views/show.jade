@@ -8,6 +8,6 @@ block content
   form(method="POST", action="/deletepost/#{post._id}")
     input(type="hidden" name="_method" value="DELETE")
     button(type="submit") Delete
-  a(href="/post/edit/#{post._id}") Edit
+  a(href="/post/#{post._id}/edit") Edit
   br
   p!= post.postcontent
