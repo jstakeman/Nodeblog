@@ -29,7 +29,8 @@ build/Release
 node_modules
 
 #DS_Store
-.DS-Store
+.DS_Store
+
 
 #Environment Variables
 env.json
