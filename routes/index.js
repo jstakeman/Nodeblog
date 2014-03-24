@@ -5,7 +5,7 @@
 
 exports.index = function(db, markdown) {
 	return function(req, res){
-	db.collection('posts').find().toArray(function (err, result) {
+	db.collection('posts').find({}, {sort:[['_id', -1]]}).toArray(function (err, result) {
 		if (err) {
 			console.log('Something Went Wrong!')
 			} 
