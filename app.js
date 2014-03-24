@@ -67,7 +67,7 @@ app.get('/', routes.index(db, markdown));
 app.get('/newpost', restrict, post.new);
 app.post('/createpost', restrict, post.create(db));
 app.del('/deletepost/:_id', restrict, post.delete(db));
-app.get('/post/:slug', post.show(db));
+app.get('/post/:slug', post.show(db, markdown));
 app.get('/post/:_id/edit', restrict, post.edit(db));
 app.put('/post/update/:_id', restrict, post.update(db));
 app.get('/login', signin.login);

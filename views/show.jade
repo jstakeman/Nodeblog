@@ -1,13 +1,16 @@
 extends layout
 
 block content
-  h1 Coding in Crayon
-
-  h2= post.posttitle
-  br
-  form(method="POST", action="/deletepost/#{post._id}")
-    input(type="hidden" name="_method" value="DELETE")
-    button(type="submit") Delete
-  a(href="/post/#{post._id}/edit") Edit
-  br
-  p!= post.postcontent
+  a.logolink(href="/")
+    h1 Coding in Crayon
+  .container
+    .row
+      .col-xs-12.col-md-8.col-md-offset-2
+        h2= post.posttitle
+        form(method="POST", action="/deletepost/#{post._id}",id="DelForm")
+          input(type="hidden" name="_method" value="DELETE")
+        .btn-group
+          button(type="submit", class="btn btn-warning", form="DelForm") Delete
+          a(href="/post/#{post._id}/edit", class="btn btn-info") Edit
+        br
+        p!= post.postcontent

@@ -1,8 +1,28 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 18px "Roboto", sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+p {
+	line-height: 1.5;
+}
+
+.logolink a:link{
+	text-decoration: none;
+}
+
+.logolink a:visited{
+	text-decoration: none;
+}
+
+.logolink a:hover{
+	text-decoration: none;
+}
+
+.logolink a:active{
+	text-decoration: none;
 }

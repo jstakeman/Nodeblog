@@ -32,10 +32,12 @@ exports.create = function(db){
 	}
 }
 
-exports.show = function(db){
+exports.show = function(db, markdown){
 	return function(req, res) {
         db.collection('posts').findOne({slug: (req.params.slug)}, function (err, result) {
 		    if (err) throw err;
+		    var marked = markdown.toHTML(result.postcontent);
+		    result.postcontent = marked;
 		    res.render('show', {post: result});
 	    });
     } 
