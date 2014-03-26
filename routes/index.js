@@ -11,7 +11,7 @@ exports.index = function(db, markdown) {
 			} 
 		else {
 			for (var i=0; i < result.length; i++){
-            var marked = markdown.(result[i].postcontent);
+            var marked = markdown(result[i].postcontent);
 			result[i].postcontent = marked;
 
 			}

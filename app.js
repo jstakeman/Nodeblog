@@ -31,7 +31,7 @@ var db = mongo.db( env.dburi, {native_parser:true});
 //
 var markdown = require('marked');
 markdown.setOptions({
-  sanitize: flase;
+  sanitize: false
 });
 
 
