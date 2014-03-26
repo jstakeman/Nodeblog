@@ -29,7 +29,10 @@ var ObjectId = require('mongoskin').ObjectID;
 var db = mongo.db( env.dburi, {native_parser:true});
 
 //
-var markdown = require('markdown').markdown;
+var markdown = require('marked');
+markdown.setOptions({
+  sanitize: flase;
+});
 
 
 
