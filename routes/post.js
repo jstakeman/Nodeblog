@@ -15,11 +15,12 @@ exports.create = function(db){
 		var slug = req.body.slug;
 
 		var collection = db.collection('posts');
-
+        var pubDate = Date.now();
 		collection.insert({
 			"posttitle" : postTitle,
 			"postcontent" : postContent,
-			"slug" : slug
+			"slug" : slug,
+			"pubdate" : pubDate
 		}, function (err, doc) {
 			if (err) {
 				res.send("There was a problem")
@@ -32,12 +33,16 @@ exports.create = function(db){
 	}
 }
 
-exports.show = function(db, markdown){
+exports.show = function(db, markdown, moment){
 	return function(req, res) {
         db.collection('posts').findOne({slug: (req.params.slug)}, function (err, result) {
 		    if (err) throw err;
 		    var marked = markdown(result.postcontent);
 		    result.postcontent = marked;
+		    if (result.pubdate) {
+              date = moment(result.pubdate).format("MMMM Do YYYY");
+              result.pubdate = date;
+            } 
 		    res.render('show', {post: result});
 	    });
     } 
