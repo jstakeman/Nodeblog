@@ -71,13 +71,14 @@ function restrict(req, res, next) {
 app.get('/', routes.index(db, markdown));
 app.get('/newpost', restrict, post.new);
 app.post('/createpost', restrict, post.create(db));
+app.get('/login', signin.login);
+app.post('/login', signin.check(env));
+app.get('/dashboard', restrict, dashboard.show(db, markdown));
 app.del('/deletepost/:_id', restrict, post.delete(db));
 app.get('/post/:slug', post.show(db, markdown, moment));
 app.get('/post/:_id/edit', restrict, post.edit(db));
 app.put('/post/update/:_id', restrict, post.update(db));
-app.get('/login', signin.login);
-app.post('/login', signin.check(env));
-app.get('/dashboard', restrict, dashboard.show(db, markdown));
+
 
 var port = Number(process.env.PORT || 3000);
 
