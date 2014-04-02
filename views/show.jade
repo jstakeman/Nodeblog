@@ -8,10 +8,4 @@ block content
       .col-xs-12.col-md-8.col-md-offset-2
         h2= post.posttitle
         p= post.pubdate
-        form(method="POST", action="/deletepost/#{post._id}",id="DelForm")
-          input(type="hidden" name="_method" value="DELETE")
-        .btn-group
-          button(type="submit", class="btn btn-warning", form="DelForm") Delete
-          a(href="/post/#{post._id}/edit", class="btn btn-info") Edit
-        br
         p!= post.postcontent

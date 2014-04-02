@@ -7,12 +7,12 @@ exports.check = function(env){
 	return function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
-	
+
 
 	if(username == env.username && password == env.password) {
 		req.session.regenerate(function(){
 			req.session.user = username;
-			res.redirect('/');
+			res.redirect('/dashboard');
 		});
 	}
 	else {

@@ -2,19 +2,16 @@ extends layout
 
 block content
   h1 New Post
-  p Write Here
-  br
   .container
     .row
-        form#formCreatePost(name="createpost",method="post",action="/createpost")
-          input.col-xs-4#inputPostTitle(type="text", placeholder="sometitle", name="posttitle")
-          br
-          br
-          input.col-xs-4#inputPostSlug(type="text", placeholder="Pretty URL Goes Here", name="slug")
-          br
-          br
-          textarea.col-xs-12#inputPostContent(type="text", placeholder="brilliance", name="postcontent", rows="10")
-          br
-          br
-          br
-          button.btn#btnSubmit(type="submit") submit
+        form#formCreatePost(name="createpost",method="post",action="/createpost", role="form")
+          .form-group
+            label(for="inputPostTitle") Title
+            input.form-control#inputPostTitle(type="text", placeholder="sometitle", name="posttitle")
+          .form-group
+            label(for="inputPostSlug") Pretty URL
+            input.form-control#inputPostSlug(type="text", placeholder="Pretty URL Goes Here", name="slug")
+          .form-group
+            label(for="inputPostContent") Body
+            textarea.form-control#inputPostContent(type="text", placeholder="brilliance", name="postcontent", rows="15")
+          button.btn.btn-primary#btnSubmit(type="submit") submit

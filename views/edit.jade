@@ -2,19 +2,18 @@ extends layout
 
 block content
   h1 Edit Me
-  p Write Here
-  br
   .container
     .row
         form#formEditPost(name="editpost",method="post",action="/post/update/#{post._id}")
-          input.col-xs-4#inputPostTitle(type="text", value="#{post.posttitle}", name="posttitle")
-          br
-          br
-          input.col-xs-4#inputPostSlug(type="text", value="#{post.slug}", name="slug")
-          br
-          br
-          textarea.col-xs-12#inputPostContent(type="text", name="postcontent", rows="10")
-            = post.postcontent
+          .form-group
+            label(for="inputPostTitlte") Title
+            input.form-control#inputPostTitle(type="text", value="#{post.posttitle}", name="posttitle")
+          .form-group
+            label(for="inputPostSlug") Pretty URL
+            input.form-control#inputPostSlug(type="text", value="#{post.slug}", name="slug")
+          .form-group
+            label(for="inputPostContent") Body
+            textarea.form-control#inputPostContent(type="text", name="postcontent", rows="15")= post.postcontent
           input(type="hidden", value="#{post._id}", name="_id")
           input(type="hidden", name="_method", value="PUT")
-          button#btnSubmit.btn(type="submit") submit
+          button.btn-primary#btnSubmit.btn(type="submit") submit

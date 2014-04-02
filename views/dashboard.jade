@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1 Coding in Crayon
+  br
+  .container
+    .row
+      .col-xs-12.col-md-3
+        h2 Make New Things!
+        .btn-group-vertical
+          a.btn.btn-lg.btn-default(href="/newpost") New Post!&nbsp;
+          a.btn.btn-lg.btn-default(href="#") New Page!
+      .col-xs-12.col-md-6
+        h2 #{counter} Posts So Far!
+        ul(style="list-style-type: none;")
+          each post, i in postlist
+            li
+              div
+                h3(style="display: inline-block; vertical-align: baseline;")
+                  a(href="/post/#{post.slug}")= post.posttitle
+                form(method="POST", action="/deletepost/#{post._id}",id="DelForm")
+                  input(type="hidden" name="_method" value="DELETE")
+                span.btn-group(style="display: inline-block; vertical-align: baseline;")
+                  button(type="submit", class="btn btn-warning", form="DelForm") Delete
+                  a(href="/post/#{post._id}/edit", class="btn btn-info") Edit
+                hr

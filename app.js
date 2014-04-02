@@ -6,6 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var post = require('./routes/post');
+var dashboard = require('./routes/dashboard');
 var signin = require('./routes/login.js');
 var http = require('http');
 var path = require('path');
@@ -76,6 +77,7 @@ app.get('/post/:_id/edit', restrict, post.edit(db));
 app.put('/post/update/:_id', restrict, post.update(db));
 app.get('/login', signin.login);
 app.post('/login', signin.check(env));
+app.get('/dashboard', restrict, dashboard.show(db, markdown));
 
 var port = Number(process.env.PORT || 3000);
 
